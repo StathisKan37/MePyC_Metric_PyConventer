@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.font import Font
+from functions import metric_function
 
 # Creating the main application window
 root = Tk()
@@ -10,22 +11,55 @@ root.configure(bg="#f0f0f0")
 root.resizable(False, False)
 
 def Convert():
-	x = float(entry_1.get())
-	result = (x * 1000)
-	Label(root, text=result, bg="#f0f0f0").grid(row=3, column=1)
+    try:
+        x1 = float(entry_1.get())
+        x2 = clicked_1.get()
+        x3 = clicked_2.get()
+        result = metric_function(x1, x2, x3)
+    except ValueError:
+        result = 'Please enter a valid number'
+    
+    result_label.config(text=result)
 
 # Label with font size 30 and bold weight
 title_font = Font(size=20,weight="bold")
 Label(root, text="Welcome to the Metric PyConventer", font=title_font, bg="#f0f0f0").grid(row=0, column=0, columnspan=2, padx=10, pady=20)
 
-# Labels definition
-Label(root,text="Kilometers (Km)", bg="#f0f0f0").grid(row=2, column=0)
-Label(root,text="Meters (m)", bg="#f0f0f0").grid(row=2, column=1)
+# Defining the options
+metric_options = [
+	'Picometers (pm)',
+	'Nanometers (nm)',
+	'Micrometers (um)',
+	'Millimeters (mm)',
+	'Centimeters (cm)',
+	'Decimeters (dm)',
+	'Meters (m)',
+	'Kilometers (km)',
+	'Miles (mi)',
+	'Yards (yd)',
+	'Feet (ft)',
+	'Inches (in)',
+	'Nautical miles (Nm)']
+
+# Option menus
+clicked_1 = StringVar()
+clicked_1.set(metric_options[6])
+clicked_2 = StringVar()
+clicked_2.set(metric_options[7])
+
+dropmenu_1 = OptionMenu(root, clicked_1, *metric_options)
+dropmenu_2 = OptionMenu(root, clicked_2, *metric_options)
+dropmenu_1.grid(row=2, column=0, pady=20)
+dropmenu_2.grid(row=2, column=1, pady=20)
+
+# Result label
+result_label = Label(root, text='', bg="#f0f0f0")
+result_label.grid(row=3, column=1)
 
 # Defining an entry
 entry_1 = Entry(root, width=20)
 entry_1.grid(row=3, column=0)
-entry_1.insert(0, "0")
+entry_1.insert(0, "")
 
 # Defining the convert button
 Button(root, text="Convert", command=Convert, width=30, bg="#4CAF50", fg="white", activebackground="#45a049").grid(row=4, column=0, columnspan=2, pady=20)
