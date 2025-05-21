@@ -1,5 +1,13 @@
 def metric_function(x1, x2, x3):
     # Converting input to SI unit (meters)
+    if x2 == 'Picometers (pm)':
+        SI_unit = x1 / 1000000000000
+    if x2 == 'Nanometers (nm)':
+        SI_unit = x1 / 1000000000
+    if x2 == 'Micrometers (um)':
+        SI_unit = x1 / 1000000
+    if x2 == 'Millimeters (mm)':
+        SI_unit = x1 / 1000
     if x2 == 'Centimeters (cm)':
         SI_unit = x1 / 100
     if x2 == 'Decimeters (dm)':
@@ -20,6 +28,14 @@ def metric_function(x1, x2, x3):
         SI_unit = x1 * 1852
 
     # Converting SI unit (meters) to output unit
+    if x3 == 'Picometers (pm)':
+        return SI_unit * 1000000000000
+    if x3 == 'Nanometers (nm)':
+        return SI_unit * 1000000000
+    if x3 == 'Micrometers (um)':
+        return SI_unit * 1000000
+    if x3 == 'Millimeters (mm)':
+        return SI_unit * 1000
     if x3 == 'Centimeters (cm)':
         return SI_unit * 100
     if x3 == 'Decimeters (dm)':
