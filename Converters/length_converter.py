@@ -1,10 +1,10 @@
 from tkinter import *
 from tkinter.font import Font
-from functions import metric_function
+from functions import length_function
 
 # Creating the main application window
 root = Tk()
-root.title("MePyC")
+root.title("Length conventer")
 # Background color: #f0f0f0
 root.configure(bg="#f0f0f0")
 #Setting the resizable property False
@@ -15,7 +15,7 @@ def Convert():
         x1 = float(entry_1.get())
         x2 = clicked_1.get()
         x3 = clicked_2.get()
-        result = metric_function(x1, x2, x3)
+        result = length_function(x1, x2, x3)
     except ValueError:
         result = 'Please enter a valid number'
     
@@ -23,7 +23,7 @@ def Convert():
 
 # Label with font size 30 and bold weight
 title_font = Font(size=20,weight="bold")
-Label(root, text="Welcome to the Metric PyConventer", font=title_font, bg="#f0f0f0").grid(row=0, column=0, columnspan=2, padx=10, pady=20)
+Label(root, text="Welcome to Length PyConventer", font=title_font, bg="#f0f0f0").grid(row=0, column=0, columnspan=2, padx=10, pady=20)
 
 # Defining the options
 metric_options = [
